@@ -1,19 +1,19 @@
 #include "Menu.h"
+#include "PersonalBudget.h"
 
 void Menu::show() {
     char choice;
-//    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
-//    BudgetManager budgetManager("users.xml", "incomes.xml", "expenses.xml");
+    PersonalBudget personalBudget("users.xml", "incomes.xml", "expenses.xml");
     while (true) {
-        if (!budgetManager.isUserLoggedIn()) {
+        if (!personalBudget.isUserLoggedIn()) {
             choice = selectOptionFromMainMenu();
 
             switch (choice) {
             case '1':
-                //budgetManager.userRegistation();
+                //personalBudget.userRegistation();
                 break;
             case '2':
-                //budgetManager.userLogin();
+                //personalBudget.userLogin();
                 break;
             case '9':
                 exit(0);
@@ -29,25 +29,25 @@ void Menu::show() {
 
             switch (choice) {
             case '1':
-                //budgetManager.addIncome();
+                //personalBudget.addIncome();
                 break;
             case '2':
-                //budgetManager.addExpense();
+                //personalBudget.addExpense();
                 break;
             case '3':
-                //budgetManager.showBudgetForCurrentMonth();
+                //personalBudget.showBudgetForCurrentMonth();
                 break;
             case '4':
-                //budgetManager.showBudgetFromPreviousMonth();
+                //personalBudget.showBudgetFromPreviousMonth();
                 break;
             case '5':
-                //budgetManager.showBudgetFromSelectedPeriod();
+                //personalBudget.showBudgetFromSelectedPeriod();
                 break;
             case '6':
-                //budgetManager.changePasswordOfLoggedInUser();
+                //personalBudget.changePasswordOfLoggedInUser();
                 break;
             case '7':
-                //budgetManager.logoutOfUser();
+                //personalBudget.logoutOfUser();
                 break;
             }
         }
