@@ -13,7 +13,7 @@ void Menu::show() {
                 personalBudget.userRegistration();
                 break;
             case '2':
-                //personalBudget.userLogin();
+                personalBudget.userLogin();
                 break;
             case '9':
                 exit(0);
@@ -47,7 +47,7 @@ void Menu::show() {
                 //personalBudget.changePasswordOfLoggedInUser();
                 break;
             case '7':
-                //personalBudget.logoutOfUser();
+                personalBudget.logoutOfUser();
                 break;
             }
         }
