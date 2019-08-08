@@ -1,7 +1,7 @@
 #include "UserManager.h"
 
 UserManager::UserManager(string fileNameWithUsers) : fileWithUsers(fileNameWithUsers) {
-    //users = fileWithUsers.loadUsersFromFile();
+    users = fileWithUsers.loadUsersFromFile();
     idOfLoggedInUser = 0;
     isLoggedIn = false;
 }
@@ -13,7 +13,7 @@ void UserManager::userRegistration() {
     User user = enterNewUserData();
 
     users.push_back(user);
-    //fileWithUsers.addUserToFile(user);
+    fileWithUsers.addUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
@@ -112,7 +112,7 @@ void UserManager::changePasswordOfLoggedInUser() {
                 system("pause");
             }
         }
-        //fileWithUsers.saveAllUsersToFile(users);
+        fileWithUsers.saveAllUsersToFile(users);
     } else {
         cout << "Uzytkownik nie zalogowany!" << endl;
         system("pause");

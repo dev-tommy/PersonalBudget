@@ -4,11 +4,11 @@ PersonalBudget::PersonalBudget(string fileNameWithUsers, string fileNameWithInco
     userManager(fileNameWithUsers),
     FILE_NAME_WITH_INCOMES(fileNameWithIncomes),
     FILE_NAME_WITH_EXPENSES(fileNameWithExpenses) {
-    //adresatMenedzer = NULL;
+    //budgetManager = NULL;
 }
 PersonalBudget::~PersonalBudget() {
-    //delete adresatMenedzer;
-    //adresatMenedzer = NULL;
+    //delete budgetManager;
+    //budgetManager = NULL;
 }
 
 void PersonalBudget::userRegistration() {
@@ -17,7 +17,7 @@ void PersonalBudget::userRegistration() {
 
 void PersonalBudget::userLogin() {
     userManager.userLogin();
-    //adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI,uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+    //budgetManager = new BudgetManager(FILE_NAME_WITH_INCOMES,FILE_NAME_WITH_EXPENSES,userManager.getIdOfLoggedInUser());
 }
 
 void PersonalBudget::changePasswordOfLoggedInUser() {
@@ -30,8 +30,8 @@ void PersonalBudget::changePasswordOfLoggedInUser() {
 
 void PersonalBudget::logoutOfUser() {
     userManager.logoutOfUser();
-    //delete adresatMenedzer;
-    //adresatMenedzer = NULL;
+    //delete budgetManager;
+    //budgetManager = NULL;
 }
 
 
@@ -39,7 +39,7 @@ void PersonalBudget::addIncome() {
 }
 
 void PersonalBudget::addExpense() {
-    //if (userManager.isLoggedIn) {
+
 
 }
 

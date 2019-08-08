@@ -11,6 +11,7 @@ using namespace std;
 
 class XmlFile : public CMarkup {
     const string XML_FILE_NAME;
+    const string ROOT_NAME;
     const string ERR_NO_ROOT = "no root element";
 
     bool setXmlFileToStringSuccess = false;
@@ -20,7 +21,7 @@ class XmlFile : public CMarkup {
 
 public:
     CMarkup xml;
-    XmlFile(string xmlFileName);
+    XmlFile(string xmlFileName, string rootName);
     ~XmlFile();
 
     void showXmlByString();

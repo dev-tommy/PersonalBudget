@@ -1,6 +1,9 @@
 #include "XmlFile.h"
 
-XmlFile::XmlFile(string xmlFileName) : XML_FILE_NAME(xmlFileName) {
+
+XmlFile::XmlFile(string xmlFileName, string rootName) :
+    XML_FILE_NAME(xmlFileName),
+    ROOT_NAME(rootName) {
     loadXml();
 }
 

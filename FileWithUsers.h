@@ -13,11 +13,12 @@
 
 using namespace std;
 
-class FileWithUsers : public XmlFile {
+class FileWithUsers{
     const string FILE_NAME_WITH_USER;
+    const string USERS_ROOT_NAME = "USERS";
     User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 public:
-    FileWithUsers(string nazwaPlikuZUzytkownikami);
+    FileWithUsers(string fileNameWithUsers);
     void addUserToFile(User user);
     vector<User> loadUsersFromFile();
     void saveAllUsersToFile(vector<User> users);
