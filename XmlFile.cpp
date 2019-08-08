@@ -33,12 +33,11 @@ void XmlFile::loadXml() {
     setXmlFileToStringSuccess = xml.SetDoc(allXmlFileInString);
     if (!setXmlFileToStringSuccess) {
         system("cls");
-        cout << "Incorrect xml file!" << endl;
         errorReceived = xml.GetError();
-        cout << "Error: " << errorReceived << endl;
+        cout << "Error loading XML file: " << errorReceived << endl;
 
         if ((errorReceived == ERR_NO_ROOT)) {
-            cout << "The file " << XML_FILE_NAME << " is empty. Root element added: " << ROOT_NAME << endl;
+            cout << "The file " << XML_FILE_NAME << " is empty. Root element has been added: " << ROOT_NAME << endl;
             xml.AddElem(ROOT_NAME);
         }
         system("pause");

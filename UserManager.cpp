@@ -2,7 +2,7 @@
 
 UserManager::UserManager(string fileNameWithUsers) : fileWithUsers(fileNameWithUsers) {
     users = fileWithUsers.loadUsersFromFile();
-    listAllUsers();
+    //listAllUsers();
     idOfLoggedInUser = 0;
     isLoggedIn = false;
 }
@@ -48,15 +48,15 @@ User UserManager::enterNewUserData() {
     } while (doesLoginExist(user.getLogin()) == true);
 
     cout << "Podaj haslo: ";
-    cin >> password;
+    password  = AuxiliaryMethods::getLineOfText();;
     user.setPassword(password);
 
     cout << "Podaj imie: ";
-    cin >> name;
+    name  = AuxiliaryMethods::getLineOfText();;
     user.setName(name);
 
     cout << "Podaj nazwisko: ";
-    cin >> surname;
+    surname  = AuxiliaryMethods::getLineOfText();;
     user.setSurname(surname);
 
     return user;
