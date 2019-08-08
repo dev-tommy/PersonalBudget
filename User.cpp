@@ -28,7 +28,7 @@
         return login;
     }
 
-    string User::getPasswrod() {
+    string User::getPassword() {
         return password;
     }
 

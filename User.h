@@ -8,7 +8,6 @@ using namespace std;
 class User {
     int userId;
     string login, password, name, surname;
-    const string OBJECT_NAME = "USER";
 
 public:
     void setUserId(int newUserId);
@@ -19,7 +18,7 @@ public:
 
     int getUserId();
     string getLogin();
-    string getPasswrod();
+    string getPassword();
     string getName();
     string getSurname();
 };
