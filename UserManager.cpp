@@ -2,6 +2,7 @@
 
 UserManager::UserManager(string fileNameWithUsers) : fileWithUsers(fileNameWithUsers) {
     users = fileWithUsers.loadUsersFromFile();
+    listAllUsers();
     idOfLoggedInUser = 0;
     isLoggedIn = false;
 }
@@ -16,21 +17,27 @@ void UserManager::userRegistration() {
     fileWithUsers.addUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
+
     system("pause");
 
 }
 
 void UserManager::listAllUsers() {
+    if (users.size() == 0) {
+        cout << "Brak uzytkownikow do wyswietlenia" << endl;
+    }
     for (int i = 0; i < users.size(); i++) {
         cout << users[i].getUserId() << endl;
         cout << users[i].getLogin() << endl;
-        cout << users[i].getPassword() << endl << endl;
+        cout << users[i].getName() << endl;
+        cout << users[i].getSurname() << endl << endl;
     }
+    system("pause");
 }
 
 User UserManager::enterNewUserData() {
     User user;
-    string login, password;
+    string login, password, name, surname;
 
     user.setUserId(getIdOfNewUser());
     do {
@@ -42,6 +49,14 @@ User UserManager::enterNewUserData() {
     cout << "Podaj haslo: ";
     cin >> password;
     user.setPassword(password);
+
+    cout << "Podaj imie: ";
+    cin >> name;
+    user.setName(name);
+
+    cout << "Podaj nazwisko: ";
+    cin >> surname;
+    user.setSurname(surname);
 
     return user;
 }

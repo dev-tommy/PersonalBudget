@@ -18,7 +18,6 @@ void XmlFile::loadXml() {
     string errorReceived="";
     string rootElementName="";
     string allXmlFileInString="";
-    bool emptyFile = false;
 
     file.open(XML_FILE_NAME.c_str(), ios::in);
 
@@ -30,21 +29,17 @@ void XmlFile::loadXml() {
     }
     if (allXmlFileInString.size() == 0) {
         allXmlFileInString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-        emptyFile = true;
     }
     setXmlFileToStringSuccess = xml.SetDoc(allXmlFileInString);
     if (!setXmlFileToStringSuccess) {
         system("cls");
-        cout << "Incorrect xml file. Failed to load!" << endl;
+        cout << "Incorrect xml file!" << endl;
         errorReceived = xml.GetError();
         cout << "Error: " << errorReceived << endl;
 
         if ((errorReceived == ERR_NO_ROOT)) {
-            cout << "The file is empty. Enter the name of root element: " << endl;
-            cin.clear();
-            cin.sync();
-            getline(cin,rootElementName);
-            xml.AddElem(rootElementName);
+            cout << "The file " << XML_FILE_NAME << " is empty. Root element added: " << ROOT_NAME << endl;
+            xml.AddElem(ROOT_NAME);
         }
         system("pause");
     }
@@ -73,19 +68,34 @@ void XmlFile::showXmlByString() {
     system("pause");
 }
 
-void XmlFile::addData(map<string, string> User) {
+void XmlFile::addData(string tagNameOfElementWithId, string attributeNameWithId, map<string, string> DataToWriteToFile) {
     int lastId;
 
-    lastId = atoi(findLastId("User").c_str());
+    lastId = atoi(findLastId(tagNameOfElementWithId).c_str());
     if (lastId < 1)
         lastId = 0;
-    xml.AddElem("User");
-    xml.SetAttrib("userId", ++lastId);
+    xml.AddElem(tagNameOfElementWithId);
+    xml.SetAttrib(attributeNameWithId, ++lastId);
 
     map<string, string>::iterator itr;
-    for (itr = User.begin(); itr != User.end(); ++ itr) {
+    for (itr = DataToWriteToFile.begin(); itr != DataToWriteToFile.end(); ++ itr) {
         xml.AddChildElem(itr->first, itr->second);
     }
+}
+
+void XmlFile::addDataWithId(string tagNameOfElementWithId, string attributeNameWithId, int id, map<string, string> DataToWriteToFile) {
+    xml.ResetMainPos();
+    xml.FindElem(); // find root or first tag
+    xml.IntoElem();
+    xml.AddElem(tagNameOfElementWithId);
+    xml.SetAttrib(attributeNameWithId, id);
+
+    map<string, string>::iterator itr;
+    for (itr = DataToWriteToFile.begin(); itr != DataToWriteToFile.end(); ++ itr) {
+        xml.AddChildElem(itr->first, itr->second);
+    }
+
+
 }
 
 string XmlFile::findLastId(string tagNameOfElementWithId) {

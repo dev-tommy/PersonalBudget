@@ -22,9 +22,9 @@ class UserManager {
 
 
 public:
+    UserManager(string fileNameWithUsers);
     int getIdOfLoggedInUser();
     bool isLoggedIn;
-    UserManager(string fileNameWithUsers);
     void userRegistration();
     void userLogin();
     void listAllUsers();

@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+
 
 #include "XmlFile.h"
 #include "AuxiliaryMethods.h"
@@ -14,7 +16,7 @@
 using namespace std;
 
 class FileWithUsers{
-    const string FILE_NAME_WITH_USER;
+    const string FILE_NAME_WITH_USERS;
     const string USERS_ROOT_NAME = "USERS";
     User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 public:

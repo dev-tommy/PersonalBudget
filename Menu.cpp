@@ -10,7 +10,7 @@ void Menu::show() {
 
             switch (choice) {
             case '1':
-                //personalBudget.userRegistation();
+                personalBudget.userRegistration();
                 break;
             case '2':
                 //personalBudget.userLogin();

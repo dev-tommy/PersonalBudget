@@ -25,7 +25,9 @@ public:
     ~XmlFile();
 
     void showXmlByString();
-    void addData(map<string, string> User);
+    void addData(string tagNameOfElementWithId, string attributeNameWithId, map<string, string> dataToWriteToFile);
+    void addDataWithId(string tagNameOfElementWithId, string attributeNameWithId, int id, map<string, string> dataToWriteToFile);
+    void addElem(string tagNameOfElement);
     string findLastId(string tagNameOfElementWithId);
 
 };
