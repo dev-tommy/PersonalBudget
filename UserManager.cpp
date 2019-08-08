@@ -124,11 +124,12 @@ void UserManager::changePasswordOfLoggedInUser() {
         for (int i = 0; i < users.size(); i++) {
             if (users[i].getUserId() == idOfLoggedInUser) {
                 users[i].setPassword(newPassword);
+                fileWithUsers.saveEditedUser(users[i]);
                 cout << endl << "Haslo zostalo zmienione." << endl << endl;
                 system("pause");
             }
         }
-        fileWithUsers.saveAllUsersToFile(users);
+
     } else {
         cout << "Uzytkownik nie zalogowany!" << endl;
         system("pause");

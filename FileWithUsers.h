@@ -24,6 +24,7 @@ public:
     void addUserToFile(User user);
     vector<User> loadUsersFromFile();
     void saveAllUsersToFile(vector<User> users);
+    void saveEditedUser(User user);
 };
 
 #endif // FILEWITHUSERS_H

@@ -44,7 +44,7 @@ void Menu::show() {
                 //personalBudget.showBudgetFromSelectedPeriod();
                 break;
             case '6':
-                //personalBudget.changePasswordOfLoggedInUser();
+                personalBudget.changePasswordOfLoggedInUser();
                 break;
             case '7':
                 personalBudget.logoutOfUser();
@@ -77,11 +77,11 @@ char Menu::selectOptionFromUserMenu() {
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "1. Dodaj przychod" << endl;
-    cout << "2. Dodaj wydatek" << endl;
-    cout << "3. Bilans z biezacego miesiaca" << endl;
-    cout << "4. Bilans z poprzedniego miesiaca" << endl;
-    cout << "5. Bilans z wybranego okresu" << endl;
+    cout << "[ NIEDOSTEPNE ] 1. Dodaj przychod" << endl;
+    cout << "[ NIEDOSTEPNE ] 2. Dodaj wydatek" << endl;
+    cout << "[ NIEDOSTEPNE ] 3. Bilans z biezacego miesiaca" << endl;
+    cout << "[ NIEDOSTEPNE ] 4. Bilans z poprzedniego miesiaca" << endl;
+    cout << "[ NIEDOSTEPNE ] 5. Bilans z wybranego okresu" << endl;
     cout << "---------------------------" << endl;
     cout << "6. Zmien haslo" << endl;
     cout << "7. Wyloguj sie" << endl;

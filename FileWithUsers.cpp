@@ -63,5 +63,31 @@ vector<User> FileWithUsers::loadUsersFromFile() {
 }
 
 void FileWithUsers::saveAllUsersToFile(vector<User> users) {
+    XmlFile xmlFileWithUsers(FILE_NAME_WITH_USERS, USERS_ROOT_NAME);
+
+    xmlFileWithUsers.xml.ResetMainPos();
+    xmlFileWithUsers.xml.FindElem(); // find root or first tag
+    xmlFileWithUsers.xml.IntoElem();
+
+    while (xmlFileWithUsers.xml.FindElem()) {
+
+    }
+}
+
+void FileWithUsers::saveEditedUser(User userForSave) {
+    XmlFile xmlFileWithUsers(FILE_NAME_WITH_USERS, USERS_ROOT_NAME);
+    int userId;
+    xmlFileWithUsers.xml.ResetMainPos();
+    xmlFileWithUsers.xml.FindElem(); // find root or first tag
+    xmlFileWithUsers.xml.IntoElem();
+
+    while (xmlFileWithUsers.xml.FindElem()) {
+        userId = AuxiliaryMethods::convertStringToInt( xmlFileWithUsers.xml.GetAttrib( xmlFileWithUsers.xml.GetAttribName(0) ) );
+        if (userId == userForSave.getUserId()) {
+            xmlFileWithUsers.xml.FindChildElem("password");
+            xmlFileWithUsers.xml.SetChildData(userForSave.getPassword());
+        }
+    }
+
 
 }
