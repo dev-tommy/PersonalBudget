@@ -8,14 +8,14 @@
 #include <sstream>
 
 #include "User.h"
-//#include "FileWithUsers.h"
+#include "FileWithUsers.h"
 
 using namespace std;
 
 class UserManager {
     int idOfLoggedInUser;
     vector <User> users;
-    //FileWithUsers fileWithUsers;
+    FileWithUsers fileWithUsers;
     User enterNewUserData();
     int getIdOfNewUser();
     bool doesLoginExist(string login);

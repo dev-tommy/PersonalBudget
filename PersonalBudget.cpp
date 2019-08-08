@@ -1,7 +1,7 @@
 #include "PersonalBudget.h"
 
 PersonalBudget::PersonalBudget(string fileNameWithUsers, string fileNameWithIncomes, string fileNameWithExpenses):
-//    userManager(fileNameWithUsers),
+    userManager(fileNameWithUsers),
     FILE_NAME_WITH_INCOMES(fileNameWithIncomes),
     FILE_NAME_WITH_EXPENSES(fileNameWithExpenses) {
     //adresatMenedzer = NULL;
@@ -12,24 +12,24 @@ PersonalBudget::~PersonalBudget() {
 }
 
 void PersonalBudget::userRegistration() {
-    //userManager.userRegistration();
+    userManager.userRegistration();
 }
 
 void PersonalBudget::userLogin() {
-    //userManager.userLogin()
+    userManager.userLogin();
     //adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI,uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
 }
 
 void PersonalBudget::changePasswordOfLoggedInUser() {
-/*    if (userManager.isLoggedIn) {
-        userManager.zmianaHaslaZalogowanegoUzytkownika();
+    if (userManager.isLoggedIn) {
+        userManager.changePasswordOfLoggedInUser();
     } else {
         cout << "Uzytkownik nie zalogowany" << endl;
-    } */
+    }
 }
 
 void PersonalBudget::logoutOfUser() {
-    //userManager.wylogowanieUzytkownika();
+    userManager.logoutOfUser();
     //delete adresatMenedzer;
     //adresatMenedzer = NULL;
 }
@@ -45,6 +45,5 @@ void PersonalBudget::addExpense() {
 
 
 bool PersonalBudget::isUserLoggedIn() {
-    //return userManager.isLoggedIn;
-    return false;
+    return userManager.isLoggedIn;
 }

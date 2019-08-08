@@ -3,14 +3,14 @@
 
 #include <iostream>
 
-//#include "UserManager.h"
+#include "UserManager.h"
 //#include "BudgetManager.h"
 
 using namespace std;
 
 class PersonalBudget {
-    //UserManager userManager;
-    //BudgetManager *budgetManager;
+    UserManager userManager;
+//    BudgetManager *budgetManager;
     const string FILE_NAME_WITH_INCOMES;
     const string FILE_NAME_WITH_EXPENSES;
 
