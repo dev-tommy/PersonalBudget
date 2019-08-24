@@ -29,7 +29,7 @@ void Menu::show() {
 
             switch (choice) {
             case '1':
-                //personalBudget.addIncome();
+                personalBudget.addIncome();
                 break;
             case '2':
                 //personalBudget.addExpense();
@@ -77,7 +77,7 @@ char Menu::selectOptionFromUserMenu() {
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "[ NIEDOSTEPNE ] 1. Dodaj przychod" << endl;
+    cout << "1. Dodaj przychod" << endl;
     cout << "[ NIEDOSTEPNE ] 2. Dodaj wydatek" << endl;
     cout << "[ NIEDOSTEPNE ] 3. Bilans z biezacego miesiaca" << endl;
     cout << "[ NIEDOSTEPNE ] 4. Bilans z poprzedniego miesiaca" << endl;
