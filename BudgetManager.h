@@ -9,6 +9,7 @@
 
 #include "FinancialOperation.h"
 #include "FileWithFinancialOperations.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -17,7 +18,9 @@ class BudgetManager {
     vector<FinancialOperation> incomes;
     //vector<FinancialOperation> expenses;
     FileWithFinancialOperations fileWithIncomes;
-    FileWithFinancialOperations fileWithExpenses;
+    //FileWithFinancialOperations fileWithExpenses;
+    FinancialOperation enterNewIncomeData();
+    int getIdOfNewOperation();
 
 public:
     BudgetManager(string fileNameWithIncomes,string fileNameWithExpenses,int idOfLoggedInUser);

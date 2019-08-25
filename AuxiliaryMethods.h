@@ -13,6 +13,7 @@ public:
     static string replaceFirstLetterIntoLargeAndRestIntoSmall(string tekst);
     static string getNumber(string tekst, int pozycjaZnaku);
     static int convertStringToInt(string liczba);
+    static float convertStringToFloat(string number);
     static char getSign();
     static string getLineOfText();
 };

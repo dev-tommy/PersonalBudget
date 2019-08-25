@@ -5,6 +5,7 @@
 #include <time.h> // time
 #include <cstdlib>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -26,9 +27,11 @@ class Date {
     void setDate(string enteredDate);
 
     string getActualDate();
-    string getDate();
+
 
 public:
+    string getDate();
+    int getIntegerDate();
     Date();
     Date(string enteredDate);
     Date(string enteredDate, bool checked);

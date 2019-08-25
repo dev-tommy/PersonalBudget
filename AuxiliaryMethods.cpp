@@ -32,6 +32,16 @@ int AuxiliaryMethods::convertStringToInt(string liczba) {
     return liczbaInt;
 }
 
+float AuxiliaryMethods::convertStringToFloat(string number) {
+        float floatNumber = 0;
+
+
+
+
+
+        return floatNumber;
+}
+
 char AuxiliaryMethods::getSign() {
     string wejscie = "";
     char znak  = {0};

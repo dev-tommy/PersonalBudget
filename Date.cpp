@@ -155,6 +155,23 @@ string Date::getDate() {
     return date;
 }
 
+int Date::getIntegerDate() {
+    int dateInteger;
+    string dateToBeConverted = getDate();
+    if (dateToBeConverted.length() == 10) {
+        dateToBeConverted.erase(7,1);
+        dateToBeConverted.erase(4,1);
+
+        istringstream iss(dateToBeConverted);
+        iss >> dateInteger;
+    } else {
+        return -1;
+    }
+
+
+}
+
+
 void Date::setDate(string enteredDate) {
     isCurrentDate = false;
     while (!isDateCorrect(enteredDate)) {
