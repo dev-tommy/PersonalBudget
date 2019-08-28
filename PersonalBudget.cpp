@@ -44,8 +44,11 @@ void PersonalBudget::addIncome() {
 }
 
 void PersonalBudget::addExpense() {
-
-
+    if (userManager.isLoggedIn) {
+        budgetManager->addExpense();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
 }
 
 

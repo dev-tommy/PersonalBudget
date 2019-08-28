@@ -2,17 +2,21 @@
 
 BudgetManager::BudgetManager(string fileNameWithIncomes,string fileNameWithExpenses,int idOfLoggedInUser):
     fileWithIncomes(fileNameWithIncomes),
-    //fileWithExpenses(fileNameWithExpenses),
+    fileWithExpenses(fileNameWithExpenses),
     ID_OF_LOGGED_IN_USER(idOfLoggedInUser) {
 
     incomes = fileWithIncomes.loadFinancialOperationsFromFile(ID_OF_LOGGED_IN_USER);
+    expenses = fileWithExpenses.loadFinancialOperationsFromFile(ID_OF_LOGGED_IN_USER);
 
 }
 
 void BudgetManager::addIncome() {
     system("cls");
     cout << ">>> DODAJ PRZYCHOD <<<" << endl << endl;
-    FinancialOperation income = enterNewIncomeData();
+    FinancialOperation income = enterNewFinancialOperationData();
+
+    income.setOperationId(fileWithIncomes.getLastIdOfOperation()+1);
+    income.setUserId(ID_OF_LOGGED_IN_USER);
 
     incomes.push_back(income);
 
@@ -24,13 +28,31 @@ void BudgetManager::addIncome() {
 
 }
 
+void BudgetManager::addExpense() {
+    system("cls");
+    cout << ">>> DODAJ WYDATEK <<<" << endl << endl;
+    FinancialOperation expense = enterNewFinancialOperationData();
+
+    expense.setOperationId(fileWithExpenses.getLastIdOfOperation()+1);
+    expense.setUserId(ID_OF_LOGGED_IN_USER);
+
+    expenses.push_back(expense);
+
+    fileWithExpenses.addOperationToFile(expense);
+
+    cout << endl << "Wydatek dodany pomyslnie." << endl << endl;
+
+    system("pause");
+
+}
+
 int BudgetManager::giveTheDate() {
     int date;
     char choice;
     bool correctDate = false;
     string dateForCheck;
     do {
-        cout << "Czy przychod dotyczy dzisiejszej daty (t/n) ? ";
+        cout << "Czy operacja dotyczy dzisiejszej daty (t/n) ? ";
         choice = AuxiliaryMethods::getSign();
 
         if (choice == 't') {
@@ -53,7 +75,7 @@ int BudgetManager::giveTheDate() {
 }
 
 string BudgetManager::giveTheItem() {
-    cout << "Czego dotyczy przychod: ";
+    cout << "Czego dotyczy operacja: ";
     return AuxiliaryMethods::getLineOfText();
 }
 
@@ -64,7 +86,7 @@ double BudgetManager::giveTheAmount() {
     int decimalPointPosition = 0;
     bool correctAmount = false;
     do {
-        cout << "Podaj kwote przychodu (do dwoch miejsc po przecinku): ";
+        cout << "Podaj kwote (do dwoch miejsc po przecinku): ";
         amount  = AuxiliaryMethods::getLineOfText();
         amount = AuxiliaryMethods::findAndReplace(amount, "," , ".");
         decimalPointPosition = amount.length() - amount.find(".");
@@ -73,7 +95,10 @@ double BudgetManager::giveTheAmount() {
             amount += "00";
         } else if (decimalPointPosition == 2) {
             amount += "0";
+        } else if (amount.find(".") == -1) {
+            amount += ".00";
         }
+
         convertedAmountToDouble = AuxiliaryMethods::convertStringToDouble(amount);
         convertedAmountToDouble = (convertedAmountToDouble * 100) / 100;
         convertedAmountToString = AuxiliaryMethods::convertDoubleToString(convertedAmountToDouble);
@@ -90,23 +115,14 @@ double BudgetManager::giveTheAmount() {
     return AuxiliaryMethods::convertStringToDouble(amount);
 }
 
-FinancialOperation BudgetManager::enterNewIncomeData() {
+FinancialOperation BudgetManager::enterNewFinancialOperationData() {
 
-    FinancialOperation income;
+    FinancialOperation operation;
     string item, amount;
 
-    income.setOperationId(getIdOfNewOperation());
-    income.setUserId(ID_OF_LOGGED_IN_USER);
-    income.setDate(giveTheDate());
-    income.setItem(giveTheItem());
-    income.setAmount(giveTheAmount());
+    operation.setDate(giveTheDate());
+    operation.setItem(giveTheItem());
+    operation.setAmount(giveTheAmount());
 
-    return income;
-}
-
-int BudgetManager::getIdOfNewOperation() {
-    if (incomes.empty() == true)
-        return 1;
-    else
-        return fileWithIncomes.getLastIdOfOperation()+1;
+    return operation;
 }

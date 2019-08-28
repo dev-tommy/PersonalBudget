@@ -17,21 +17,20 @@ class BudgetManager {
     const int ID_OF_LOGGED_IN_USER;
 
     vector<FinancialOperation> incomes;
-    //vector<FinancialOperation> expenses;
+    vector<FinancialOperation> expenses;
 
     int giveTheDate();
     string giveTheItem();
     double giveTheAmount();
 
     FileWithFinancialOperations fileWithIncomes;
-    //FileWithFinancialOperations fileWithExpenses;
-    FinancialOperation enterNewIncomeData();
-    int getIdOfNewOperation();
+    FileWithFinancialOperations fileWithExpenses;
+    FinancialOperation enterNewFinancialOperationData();
 
 public:
     BudgetManager(string fileNameWithIncomes,string fileNameWithExpenses,int idOfLoggedInUser);
     void addIncome();
-    //void addExpense();
+    void addExpense();
     //void showBudgetFromSelectedPeriod();
     //void setIdOfLoggedInUser();
 
