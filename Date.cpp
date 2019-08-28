@@ -9,49 +9,19 @@ Date::Date(string enteredDate) {
     setDate(enteredDate);
 }
 
-Date::Date(string enteredDate, bool checked = false) {
-    if (checked) {
-        date = enteredDate;
-        day = getDayFromDate(enteredDate);
-        month = getMonthFromDate(enteredDate);
-        year = getYearFromDate(enteredDate);
-    } else {
-        setDate(enteredDate);
-    }
-}
-
-bool Date::operator < ( Date const &secondDate ) {
-    if (((this->year) > secondDate.year)) {
-        return false;
-    }
-    if (((this->year) < secondDate.year)) {
-        return true;
-    }
-    if ((this->month > secondDate.month)) {
-        return false;
-    }
-    if ((this->month < secondDate.month)) {
-        return true;
-    }
-    if ((this->day < secondDate.day)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-
-string Date::getActualDate() {
-    char buffer [11]; //yyyy-mm-dd0
+int Date::getActualDate() {
+    //char buffer [11]; //yyyy-mm-dd0
+    int date = 0;
     time_t rawTime;
     time(&rawTime); // set actual time to rawTime
     const tm *actualTime = localtime(&rawTime);
-    strftime(buffer,sizeof(buffer),"%Y-%m-%d",actualTime);
+    //strftime(buffer,sizeof(buffer),"%Y-%m-%d",actualTime);
     day = actualTime->tm_mday;
     month = actualTime->tm_mon+1;  // 0-11 -> +1
     year = actualTime->tm_year + 1900;    // +1900
 
-    return buffer;
+    date = year*10000+month*100+day;
+    return date;
 }
 
 bool Date::isLeapYear(unsigned int yearToCheck) {
@@ -85,14 +55,20 @@ int Date::getNumberOfDaysOfTheMonth(int month, unsigned int year) {
     return numberOfDaysOfTheMonth;
 }
 
+int Date::getEndDate(int actualDate) {
+    int endDate = actualDate;
+    endDate /= 100;
+    endDate = endDate*100 + getNumberOfDaysOfTheMonth((endDate % 100) , (endDate / 100));
+    return endDate;
+}
 
 bool Date::isDateCorrect(string dateToCheck) {
-    bool correctDate = true;
     string dateToBeDivaded = dateToCheck;
-    Date actualDate;
-    Date startDate("2000-01-01", true);
-    //0123456789
-    //2000-12-31
+    int actualDate = getActualDate();
+    int startDate = 20000101;
+    int testDate = 0;
+    int endDate;
+
     if (dateToBeDivaded.length() != 10) {
         cout << "Nieprawidlowa dlugosc. " << endl;
         return false;
@@ -111,67 +87,75 @@ bool Date::isDateCorrect(string dateToCheck) {
         }
     }
 
-    Date testDate(dateToCheck, true);
+    testDate = AuxiliaryMethods::convertStringToInt(dateToBeDivaded);
 
-    if ( !isItInRange(testDate.month, 1, 12) ) {
-        cout << "Miesiac " << testDate.month << " poza zakresem." << endl;
+    day = testDate % 100;
+    testDate /= 100;
+    month = testDate % 100;
+    testDate /= 100;
+    year = testDate;
+
+    if ( !isItInRange(month, 1, 12) ) {
+        cout << "Miesiac " << month << " poza zakresem." << endl;
         return false;
     }
 
-    if ( !isItInRange(testDate.day, 1, getNumberOfDaysOfTheMonth(testDate.month, testDate.year)) ) {
-        cout << "Dany dzien: " << testDate.day << " nie wystepuje w miesiacu: " << testDate.month << endl;
+    if ( !isItInRange(day, 1, getNumberOfDaysOfTheMonth(month, year)) ) {
+        cout << "Dany dzien: " << day << " nie wystepuje w miesiacu: " << month << endl;
         return false;
     }
 
-    if (actualDate < testDate) {
-        cout << "Wprowadzona data " << testDate.date << " przekracza date dzisiejsza " << actualDate.date << endl;
+    testDate = AuxiliaryMethods::convertStringToInt(dateToBeDivaded);
+    endDate = getEndDate(actualDate);
+
+
+    if (endDate < testDate) {
+        cout << "Wprowadzona data: " << getDateAsString(testDate) << " jest pozniejsza od daty: " << getDateAsString(endDate) << endl;
         return false;
     }
 
     if (testDate < startDate) {
-        cout << "Wprowadzona data " << testDate.date << " jest mniejsza od daty minimalnej " << startDate.date << endl;
+        cout << "Wprowadzona data: " << getDateAsString(testDate) << " jest wczesniejsza od daty: " << getDateAsString(startDate) << endl;
         return false;
     }
-
+    date = testDate;
     return true;
 }
 
-int Date::getDayFromDate(string dateToBeDivaded) {
-    return (dateToBeDivaded[8]-'0')*10 + (dateToBeDivaded[9]-'0');
+int Date::getDayFromDate(int date) {
+    return (date % 100);
 }
 
-int Date::getMonthFromDate(string dateToBeDivaded) {
-    return (dateToBeDivaded[5]-'0')*10 + (dateToBeDivaded[6]-'0');
+int Date::getMonthFromDate(int date) {
+    date /= 100;
+    return (date % 100);
 }
 
-int Date::getYearFromDate(string dateToBeDivaded) {
-    return (dateToBeDivaded[0]-'0')*1000 + (dateToBeDivaded[1]-'0')*100 + (dateToBeDivaded[2]-'0')*10 + (dateToBeDivaded[3]-'0');
+int Date::getYearFromDate(int date) {
+    return (date /= 10000);
 }
 
-string Date::getDate() {
+int Date::getDate() {
     if (isCurrentDate) {
         date = getActualDate();
     }
     return date;
 }
 
-int Date::getIntegerDate() {
-    int dateInteger;
-    string dateToBeConverted = getDate();
-    if (dateToBeConverted.length() == 10) {
-        dateToBeConverted.erase(7,1);
-        dateToBeConverted.erase(4,1);
-
-        istringstream iss(dateToBeConverted);
-        iss >> dateInteger;
-        return dateInteger;
-    } else {
-        return -1;
+string Date::getDateAsString(int dateAsInt = 0) {
+    string dateAsString = "";
+    if (dateAsInt == 0) {
+        dateAsInt = date;
     }
-
-
+    if (isCurrentDate) {
+        date = getActualDate();
+        dateAsInt = date;
+    }
+    dateAsString = AuxiliaryMethods::convertIntToString(dateAsInt);
+    dateAsString.insert(6,"-");
+    dateAsString.insert(4,"-");
+    return dateAsString;
 }
-
 
 void Date::setDate(string enteredDate) {
     isCurrentDate = false;
@@ -180,5 +164,4 @@ void Date::setDate(string enteredDate) {
         cin >> enteredDate;
     }
     system("cls");
-    date = enteredDate;  // 2000-12-31
 }

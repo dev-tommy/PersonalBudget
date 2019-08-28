@@ -33,15 +33,15 @@ int BudgetManager::giveTheDate() {
 
         if (choice == 't') {
             Date todayDate;
-            date = todayDate.getIntegerDate();
+            date = todayDate.getDate();
             cout << "Wczytana data: " << date << endl;
             correctDate = true;
 
         } else if (choice == 'n') {
             cout << endl << "Podaj date w formacie [rrrr-mm-dd] : ";
             dateForCheck = AuxiliaryMethods::getLineOfText();
-            Date checkedDate(dateForCheck,false);
-            date = checkedDate.getIntegerDate();
+            Date checkedDate(dateForCheck);
+            date = checkedDate.getDate();
             cout << "Wczytana data: " << date << endl;
             correctDate = true;
         }

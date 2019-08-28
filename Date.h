@@ -7,35 +7,35 @@
 #include <string>
 #include <sstream>
 
+#include "AuxiliaryMethods.h"
+
 using namespace std;
 
 class Date {
-    string date = "";
+    int date = 0;
     int day = 0, month = 0, year = 0;
     bool isCurrentDate = false;
 
     bool isLeapYear(unsigned int yearToCheck);
     bool isItInRange(int value, int minValue, int maxValue);
-    bool operator< (Date const &secondDate);
     bool isDateCorrect(string dateToCheck);
 
     int getNumberOfDaysOfTheMonth(int month, unsigned int year);
-    int getDayFromDate(string dateToBeDivaded);
-    int getMonthFromDate(string dateToBeDivaded);
-    int getYearFromDate(string dateToBeDivaded);
+    int getDayFromDate(int date);
+    int getMonthFromDate(int date);
+    int getYearFromDate(int date);
+    int getEndDate(int actualDate);
+    int getActualDate();
 
     void setDate(string enteredDate);
 
-    string getActualDate();
 
 
 public:
-    string getDate();
-    int getIntegerDate();
     Date();
     Date(string enteredDate);
-    Date(string enteredDate, bool checked);
-
+    int getDate();
+    string getDateAsString(int dateAsInt);
 };
 
 #endif // DATE_H
