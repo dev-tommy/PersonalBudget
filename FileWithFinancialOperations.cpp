@@ -10,7 +10,7 @@ void FileWithFinancialOperations::addOperationToFile(FinancialOperation operatio
     dataToWriteToFile["userId"] = AuxiliaryMethods::convertIntToString(operation.getUserId());
     dataToWriteToFile["date"] = AuxiliaryMethods::getDateAsString(operation.getDate()); // dodac myslniki: rrrr-mm-dd
     dataToWriteToFile["item"] = operation.getItem();
-    dataToWriteToFile["amount"] = AuxiliaryMethods::convertFloatToString(operation.getAmount());
+    dataToWriteToFile["amount"] = AuxiliaryMethods::convertDoubleToString(operation.getAmount());
     xmlFileWithFinancialOperations.addDataWithId("Operation", "operationId", operation.getOperationId(), dataToWriteToFile);
 
 }

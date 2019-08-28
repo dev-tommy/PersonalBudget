@@ -16,7 +16,7 @@
         item = newItem;
     }
 
-    void FinancialOperation::setAmount(float newAmount) {
+    void FinancialOperation::setAmount(double newAmount) {
         amount = newAmount;
     }
 
@@ -37,7 +37,7 @@
         return item;
     }
 
-    float FinancialOperation::getAmount() {
+    double FinancialOperation::getAmount() {
         return amount;
     }
 

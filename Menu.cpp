@@ -4,6 +4,9 @@
 void Menu::show() {
     char choice;
     PersonalBudget personalBudget("users.xml", "incomes.xml", "expenses.xml");
+
+    std::cout << std::setprecision(2) << std::fixed;
+
     while (true) {
         if (!personalBudget.isUserLoggedIn()) {
             choice = selectOptionFromMainMenu();

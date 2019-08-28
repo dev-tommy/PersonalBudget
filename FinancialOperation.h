@@ -8,20 +8,20 @@ using namespace std;
 class FinancialOperation {
     int operationId, userId, date;
     string item;
-    float amount;
+    double amount;
 
 public:
     void setOperationId(int newOperationId);
     void setUserId(int newUserId);
     void setDate(int newDate);
     void setItem(string newItem);
-    void setAmount(float newAmount);
+    void setAmount(double newAmount);
 
     int getUserId();
     int getOperationId();
     int getDate();
     string getItem();
-    float getAmount();
+    double getAmount();
 };
 
 #endif // FINANCIALOPERATION_H

@@ -21,7 +21,7 @@ class BudgetManager {
 
     int giveTheDate();
     string giveTheItem();
-    float giveTheAmount();
+    double giveTheAmount();
 
     FileWithFinancialOperations fileWithIncomes;
     //FileWithFinancialOperations fileWithExpenses;

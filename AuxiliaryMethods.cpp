@@ -7,12 +7,12 @@ string AuxiliaryMethods::convertIntToString(int liczba) {
     return str;
 }
 
-string AuxiliaryMethods::convertFloatToString(float number) {
+string AuxiliaryMethods::convertDoubleToString(double number) {
     stringstream ss;
     string str;
-    ss << number;
+    ss << setprecision(2) << fixed << number;
     ss >> str;
-    ss.clear();
+    //ss.clear();
 
     return str;
 }
@@ -42,10 +42,9 @@ int AuxiliaryMethods::convertStringToInt(string liczba) {
     return liczbaInt;
 }
 
-float AuxiliaryMethods::convertStringToFloat(string number) {
+double AuxiliaryMethods::convertStringToDouble(string number) {
     const char* str = number.c_str();
-    float v = atof(str);
-    std::cout << std::setprecision(2) << std::fixed << v << std::endl;
+    double v = atof(str);
     return v;
 }
 
@@ -93,6 +92,8 @@ string AuxiliaryMethods::findAndReplace(string text, string textToSearchFor, str
         }
     } while( positionFound != string::npos );
     return text;
+}
 
+int AuxiliaryMethods::findText(string text, string textToSearchFor) {
 
 }
