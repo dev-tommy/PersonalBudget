@@ -35,7 +35,6 @@ public:
     Date();
     Date(string enteredDate);
     int getDate();
-    string getDateAsString(int dateAsInt);
 };
 
 #endif // DATE_H

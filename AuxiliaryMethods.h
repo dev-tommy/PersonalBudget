@@ -19,6 +19,7 @@ public:
     static float convertStringToFloat(string number);
     static char getSign();
     static string getLineOfText();
+    static string getDateAsString(int dateAsInt);
 };
 
 #endif // AUXILIARYMETHODS_H

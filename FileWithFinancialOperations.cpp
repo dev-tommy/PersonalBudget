@@ -8,7 +8,7 @@ void FileWithFinancialOperations::addOperationToFile(FinancialOperation operatio
     XmlFile xmlFileWithFinancialOperations(FILE_NAME_WITH_OPERATIONS, OPERATIONS_ROOT_NAME);
     map <string, string> dataToWriteToFile;
     dataToWriteToFile["userId"] = AuxiliaryMethods::convertIntToString(operation.getUserId());
-    dataToWriteToFile["date"] = AuxiliaryMethods::convertIntToString(operation.getDate()); // dodac myslniki: rrrr-mm-dd
+    dataToWriteToFile["date"] = AuxiliaryMethods::getDateAsString(operation.getDate()); // dodac myslniki: rrrr-mm-dd
     dataToWriteToFile["item"] = operation.getItem();
     dataToWriteToFile["amount"] = AuxiliaryMethods::convertFloatToString(operation.getAmount());
     xmlFileWithFinancialOperations.addDataWithId("Operation", "operationId", operation.getOperationId(), dataToWriteToFile);

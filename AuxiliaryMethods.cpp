@@ -74,3 +74,11 @@ string AuxiliaryMethods::getLineOfText() {
     getline(cin, wejscie);
     return wejscie;
 }
+
+string AuxiliaryMethods::getDateAsString(int dateAsInt) {
+    string dateAsString = "";
+    dateAsString = convertIntToString(dateAsInt);
+    dateAsString.insert(6,"-");
+    dateAsString.insert(4,"-");
+    return dateAsString;
+}

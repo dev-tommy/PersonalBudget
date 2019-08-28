@@ -14,6 +14,7 @@ void BudgetManager::addIncome() {
     FinancialOperation income = enterNewIncomeData();
 
     incomes.push_back(income);
+
     fileWithIncomes.addOperationToFile(income);
 
     cout << endl << "Przychod dodany pomyslnie." << endl << endl;

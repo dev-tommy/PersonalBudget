@@ -10,12 +10,10 @@ Date::Date(string enteredDate) {
 }
 
 int Date::getActualDate() {
-    //char buffer [11]; //yyyy-mm-dd0
     int date = 0;
     time_t rawTime;
     time(&rawTime); // set actual time to rawTime
     const tm *actualTime = localtime(&rawTime);
-    //strftime(buffer,sizeof(buffer),"%Y-%m-%d",actualTime);
     day = actualTime->tm_mday;
     month = actualTime->tm_mon+1;  // 0-11 -> +1
     year = actualTime->tm_year + 1900;    // +1900
@@ -110,12 +108,12 @@ bool Date::isDateCorrect(string dateToCheck) {
 
 
     if (endDate < testDate) {
-        cout << "Wprowadzona data: " << getDateAsString(testDate) << " jest pozniejsza od daty: " << getDateAsString(endDate) << endl;
+        cout << "Wprowadzona data: " << AuxiliaryMethods::getDateAsString(testDate) << " jest pozniejsza od daty: " << AuxiliaryMethods::getDateAsString(endDate) << endl;
         return false;
     }
 
     if (testDate < startDate) {
-        cout << "Wprowadzona data: " << getDateAsString(testDate) << " jest wczesniejsza od daty: " << getDateAsString(startDate) << endl;
+        cout << "Wprowadzona data: " << AuxiliaryMethods::getDateAsString(testDate) << " jest wczesniejsza od daty: " << AuxiliaryMethods::getDateAsString(startDate) << endl;
         return false;
     }
     date = testDate;
@@ -142,20 +140,7 @@ int Date::getDate() {
     return date;
 }
 
-string Date::getDateAsString(int dateAsInt = 0) {
-    string dateAsString = "";
-    if (dateAsInt == 0) {
-        dateAsInt = date;
-    }
-    if (isCurrentDate) {
-        date = getActualDate();
-        dateAsInt = date;
-    }
-    dateAsString = AuxiliaryMethods::convertIntToString(dateAsInt);
-    dateAsString.insert(6,"-");
-    dateAsString.insert(4,"-");
-    return dateAsString;
-}
+
 
 void Date::setDate(string enteredDate) {
     isCurrentDate = false;
