@@ -7,6 +7,16 @@ string AuxiliaryMethods::convertIntToString(int liczba) {
     return str;
 }
 
+string AuxiliaryMethods::convertFloatToString(float number) {
+    stringstream ss;
+    string str;
+    ss << number;
+    ss >> str;
+    ss.clear();
+
+    return str;
+}
+
 string AuxiliaryMethods::replaceFirstLetterIntoLargeAndRestIntoSmall(string tekst) {
     if (!tekst.empty()) {
         transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
@@ -33,13 +43,10 @@ int AuxiliaryMethods::convertStringToInt(string liczba) {
 }
 
 float AuxiliaryMethods::convertStringToFloat(string number) {
-        float floatNumber = 0;
-
-
-
-
-
-        return floatNumber;
+    const char* str = number.c_str();
+    float v = atof(str);
+    std::cout << std::setprecision(2) << std::fixed << v << std::endl;
+    return v;
 }
 
 char AuxiliaryMethods::getSign() {

@@ -164,6 +164,7 @@ int Date::getIntegerDate() {
 
         istringstream iss(dateToBeConverted);
         iss >> dateInteger;
+        return dateInteger;
     } else {
         return -1;
     }

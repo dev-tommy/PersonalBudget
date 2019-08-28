@@ -15,8 +15,14 @@ using namespace std;
 
 class BudgetManager {
     const int ID_OF_LOGGED_IN_USER;
+
     vector<FinancialOperation> incomes;
     //vector<FinancialOperation> expenses;
+
+    int giveTheDate();
+    string giveTheItem();
+    float giveTheAmount();
+
     FileWithFinancialOperations fileWithIncomes;
     //FileWithFinancialOperations fileWithExpenses;
     FinancialOperation enterNewIncomeData();

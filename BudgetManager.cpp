@@ -3,8 +3,7 @@
 BudgetManager::BudgetManager(string fileNameWithIncomes,string fileNameWithExpenses,int idOfLoggedInUser):
     fileWithIncomes(fileNameWithIncomes),
     //fileWithExpenses(fileNameWithExpenses),
-    ID_OF_LOGGED_IN_USER(idOfLoggedInUser)
-{
+    ID_OF_LOGGED_IN_USER(idOfLoggedInUser) {
 
 
 }
@@ -23,17 +22,11 @@ void BudgetManager::addIncome() {
 
 }
 
-FinancialOperation BudgetManager::enterNewIncomeData() {
-
-    FinancialOperation income;
-    string dateForCheck, item, amount;
-    int  date;
+int BudgetManager::giveTheDate() {
+    int date;
     char choice;
     bool correctDate = false;
-
-    income.setOperationId(getIdOfNewOperation());
-    income.setUserId(ID_OF_LOGGED_IN_USER);
-    //user.setUserId(getIdOfNewUser());
+    string dateForCheck;
     do {
         cout << "Czy przychod dotyczy dzisiejszej daty (t/n) ? ";
         choice = AuxiliaryMethods::getSign();
@@ -41,6 +34,7 @@ FinancialOperation BudgetManager::enterNewIncomeData() {
         if (choice == 't') {
             Date todayDate;
             date = todayDate.getIntegerDate();
+            cout << "Wczytana data: " << date << endl;
             correctDate = true;
 
         } else if (choice == 'n') {
@@ -48,20 +42,36 @@ FinancialOperation BudgetManager::enterNewIncomeData() {
             dateForCheck = AuxiliaryMethods::getLineOfText();
             Date checkedDate(dateForCheck,false);
             date = checkedDate.getIntegerDate();
+            cout << "Wczytana data: " << date << endl;
             correctDate = true;
         }
     } while (!correctDate);
 
-    income.setDate(date); // na int
+    return date;
+}
 
+string BudgetManager::giveTheItem() {
     cout << "Czego dotyczy przychod: ";
-    item  = AuxiliaryMethods::getLineOfText();
-    income.setItem(item);
+    return AuxiliaryMethods::getLineOfText();
+}
 
+float BudgetManager::giveTheAmount() {
+    string amount;
     cout << "Podaj kwote przychodu: ";
     amount  = AuxiliaryMethods::getLineOfText();
-    income.setAmount(AuxiliaryMethods::convertStringToFloat(amount)); // na float
+    return AuxiliaryMethods::convertStringToFloat(amount);
+}
 
+FinancialOperation BudgetManager::enterNewIncomeData() {
+
+    FinancialOperation income;
+    string item, amount;
+
+    income.setOperationId(getIdOfNewOperation());
+    income.setUserId(ID_OF_LOGGED_IN_USER);
+    income.setDate(giveTheDate());
+    income.setItem(giveTheItem());
+    income.setAmount(giveTheAmount());
 
     return income;
 }

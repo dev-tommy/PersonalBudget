@@ -7,10 +7,10 @@ FileWithFinancialOperations::FileWithFinancialOperations(string fileNameWithOper
 void FileWithFinancialOperations::addOperationToFile(FinancialOperation operation) {
     XmlFile xmlFileWithFinancialOperations(FILE_NAME_WITH_OPERATIONS, OPERATIONS_ROOT_NAME);
     map <string, string> dataToWriteToFile;
-    dataToWriteToFile["userId"] = operation.getUserId();
-    dataToWriteToFile["date"] = operation.getDate();
+    dataToWriteToFile["userId"] = AuxiliaryMethods::convertIntToString(operation.getUserId());
+    dataToWriteToFile["date"] = AuxiliaryMethods::convertIntToString(operation.getDate()); // dodac myslniki: rrrr-mm-dd
     dataToWriteToFile["item"] = operation.getItem();
-    dataToWriteToFile["amount"] = operation.getAmount();
+    dataToWriteToFile["amount"] = AuxiliaryMethods::convertFloatToString(operation.getAmount());
     xmlFileWithFinancialOperations.addDataWithId("Operation", "operationId", operation.getOperationId(), dataToWriteToFile);
 
 }
