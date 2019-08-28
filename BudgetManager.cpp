@@ -108,5 +108,5 @@ int BudgetManager::getIdOfNewOperation() {
     if (incomes.empty() == true)
         return 1;
     else
-        return incomes.back().getOperationId() + 1;
+        return fileWithIncomes.getLastIdOfOperation()+1;
 }

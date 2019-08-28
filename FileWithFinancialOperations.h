@@ -16,6 +16,7 @@
 using namespace std;
 
 class FileWithFinancialOperations {
+    int lastIdOfOperation;
     const string FILE_NAME_WITH_OPERATIONS;
     const string OPERATIONS_ROOT_NAME = "FINANCIAL_OPERATIONS";
 
@@ -23,6 +24,7 @@ public:
     FileWithFinancialOperations(string fileNameWithOperations);
     void addOperationToFile(FinancialOperation operation);
     vector<FinancialOperation> loadFinancialOperationsFromFile(int idOfLoggedInUser);
+    int getLastIdOfOperation();
     //void saveAllUsersToFile(vector<User> users);
     //void saveEditedUser(User user);
 };
