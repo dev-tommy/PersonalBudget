@@ -58,8 +58,23 @@ string BudgetManager::giveTheItem() {
 
 float BudgetManager::giveTheAmount() {
     string amount;
-    cout << "Podaj kwote przychodu: ";
-    amount  = AuxiliaryMethods::getLineOfText();
+    int decimalPointPosition = 0;
+    bool correctAmount = false;
+    do {
+        cout << "Podaj kwote przychodu (do dwoch miejsc po przecinku): ";
+        amount  = AuxiliaryMethods::getLineOfText();
+
+        amount = AuxiliaryMethods::findAndReplace(amount, "," , ".");
+
+        for (int i = 0; i < amount.length(); i++) {
+
+
+        }
+
+        correctAmount = true;
+    } while (!correctAmount);
+
+
     return AuxiliaryMethods::convertStringToFloat(amount);
 }
 

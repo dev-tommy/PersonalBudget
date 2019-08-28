@@ -82,3 +82,17 @@ string AuxiliaryMethods::getDateAsString(int dateAsInt) {
     dateAsString.insert(4,"-");
     return dateAsString;
 }
+
+string AuxiliaryMethods::findAndReplace(string text, string textToSearchFor, string replaceWith) {
+    int positionFound;
+    do {
+        positionFound = text.find( textToSearchFor );
+        if( positionFound != string::npos ) {
+                text.erase(positionFound, textToSearchFor.length());
+                text.insert(positionFound, replaceWith);
+        }
+    } while( positionFound != string::npos );
+    return text;
+
+
+}

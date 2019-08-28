@@ -20,6 +20,7 @@ public:
     static char getSign();
     static string getLineOfText();
     static string getDateAsString(int dateAsInt);
+    static string findAndReplace(string text, string textToSearchFor, string replaceWith);
 };
 
 #endif // AUXILIARYMETHODS_H
