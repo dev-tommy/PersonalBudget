@@ -5,6 +5,7 @@ BudgetManager::BudgetManager(string fileNameWithIncomes,string fileNameWithExpen
     //fileWithExpenses(fileNameWithExpenses),
     ID_OF_LOGGED_IN_USER(idOfLoggedInUser) {
 
+    incomes = fileWithIncomes.loadFinancialOperationsFromFile(ID_OF_LOGGED_IN_USER);
 
 }
 
@@ -67,19 +68,15 @@ double BudgetManager::giveTheAmount() {
         amount  = AuxiliaryMethods::getLineOfText();
         amount = AuxiliaryMethods::findAndReplace(amount, "," , ".");
         decimalPointPosition = amount.length() - amount.find(".");
-        //cout << "decimalPointPosition " << decimalPointPosition << endl;
+
         if (decimalPointPosition == 1) {
             amount += "00";
         } else if (decimalPointPosition == 2) {
             amount += "0";
         }
-        //cout << "Amount " << amount << endl;
         convertedAmountToDouble = AuxiliaryMethods::convertStringToDouble(amount);
-        //cout << "AmountDouble " << convertedAmountToDouble << endl;
         convertedAmountToDouble = (convertedAmountToDouble * 100) / 100;
-        //cout << "AmountDouble " << convertedAmountToDouble << endl;
         convertedAmountToString = AuxiliaryMethods::convertDoubleToString(convertedAmountToDouble);
-        //cout << "AmountString " << convertedAmountToString << endl;
 
         if (!(amount == convertedAmountToString)) {
             cout << "Kwota nieporawnie odczytana: " << convertedAmountToString << endl;

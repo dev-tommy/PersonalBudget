@@ -22,7 +22,7 @@ class FileWithFinancialOperations {
 public:
     FileWithFinancialOperations(string fileNameWithOperations);
     void addOperationToFile(FinancialOperation operation);
-    //vector<User> loadUsersFromFile();
+    vector<FinancialOperation> loadFinancialOperationsFromFile(int idOfLoggedInUser);
     //void saveAllUsersToFile(vector<User> users);
     //void saveEditedUser(User user);
 };
