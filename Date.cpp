@@ -41,7 +41,7 @@ int Date::getNumberOfDaysOfTheMonth(int month, unsigned int year) {
     int daysOfMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     while ( !isItInRange(month, 1, 12) ) {
-        system("cls");
+        //system("cls");
         cout << "Numer miesiaca poza zakresem <1,12>. Podaj ponownie: ";
         cin >> month;
     }
@@ -148,5 +148,5 @@ void Date::setDate(string enteredDate) {
         cout << "Podaj prawidlowa date (w formacie: rrrr-mm-dd): ";
         cin >> enteredDate;
     }
-    system("cls");
+    //system("cls");
 }
