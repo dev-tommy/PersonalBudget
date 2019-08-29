@@ -211,12 +211,12 @@ void BudgetManager::showBudgetFromSelectedPeriod() {
 }
 
 void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
-    for (int i=0; i<incomes.size() ; i++) {
+ /*   for (int i=0; i<incomes.size() ; i++) {
         cout << "| " << incomes[i].get << endl;
 
 
     }
-
+*/
     system("pause");
 }
 
