@@ -24,7 +24,7 @@ class Date {
     int getDayFromDate(int date);
     int getMonthFromDate(int date);
     int getYearFromDate(int date);
-    int getEndDate(int actualDate);
+
     int getActualDate();
 
     void setDate(string enteredDate);
@@ -34,6 +34,8 @@ class Date {
 public:
     Date();
     Date(string enteredDate);
+    int getEndDate(int actualDate);
+    int getStartDate(int actualDate);
     int getDate();
 };
 

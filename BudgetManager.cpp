@@ -88,7 +88,7 @@ double BudgetManager::giveTheAmount() {
     do {
         cout << "Podaj kwote (do dwoch miejsc po przecinku): ";
         amount  = AuxiliaryMethods::getLineOfText();
-        amount = AuxiliaryMethods::findAndReplace(amount, "," , ".");
+        amount = AuxiliaryMethods::findAndReplace(amount, ",", ".");
         decimalPointPosition = amount.length() - amount.find(".");
 
         if (decimalPointPosition == 1) {
@@ -126,3 +126,98 @@ FinancialOperation BudgetManager::enterNewFinancialOperationData() {
 
     return operation;
 }
+
+void BudgetManager::showBudgetForCurrentMonth() {
+    Date todayDate;
+    int startDate, endDate;
+
+    endDate = todayDate.getEndDate(todayDate.getDate());
+    startDate = todayDate.getStartDate(todayDate.getDate());
+
+    system("cls");
+    cout << ">>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
+    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+
+    showBudgetFromSelectedPeriod(startDate, endDate);
+    system("pause");
+}
+
+void BudgetManager::showBudgetFromPreviousMonth() {
+    Date todayDate;
+    int startDate, endDate;
+    int today, month, year, previusMonthDate;
+
+    today = todayDate.getDate();
+    month = (today / 100) % 100 - 1;
+    year = today / 10000;
+    if (month < 1) {
+        month += 12;
+        year--;
+    }
+
+    previusMonthDate = year * 10000 + month  * 100 + 1;
+
+    endDate = todayDate.getEndDate(previusMonthDate);
+    startDate = todayDate.getStartDate(previusMonthDate);
+
+    system("cls");
+    cout << ">>> BILANS Z POPRZEDNIEGO MIESIACA <<<" << endl;
+    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+
+    showBudgetFromSelectedPeriod(startDate, endDate);
+    system("pause");
+}
+
+void BudgetManager::showBudgetFromSelectedPeriod() {
+    bool correctDate = false;
+    string dateForCheck;
+    int startDate;
+    int endDate;
+
+    system("cls");
+    cout << ">>> BILANS Z WYBRANEGO OKRESU <<<" << endl;
+
+    do {
+        cout << endl << "Podaj date poczatkowa w formacie [rrrr-mm-dd] : ";
+        dateForCheck = AuxiliaryMethods::getLineOfText();
+        Date checkedStartDate(dateForCheck);
+        startDate = checkedStartDate.getDate();
+        cout << "Wczytana data: " << AuxiliaryMethods::getDateAsString(startDate) << endl;
+        correctDate = true;
+
+    } while (!correctDate);
+
+    correctDate = false;
+    do {
+        cout << endl << "Podaj date koncowa w formacie [rrrr-mm-dd] : ";
+        dateForCheck = AuxiliaryMethods::getLineOfText();
+        Date checkedEndDate(dateForCheck);
+        endDate = checkedEndDate.getDate();
+
+        if ( endDate >= startDate ) {
+            cout << "Wczytana data: " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+            correctDate = true;
+            system("pause");
+        } else {
+            cout << "Data jest wczesniejsza niz poczatkowa" << endl;
+        }
+
+    } while (!correctDate);
+
+    system("cls");
+    cout << ">>> BILANS Z WYBRANEGO OKRESU <<<" << endl;
+    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+    showBudgetFromSelectedPeriod(startDate, endDate);
+}
+
+void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
+    for (int i=0; i<incomes.size() ; i++) {
+        cout << "| " << incomes[i].get << endl;
+
+
+    }
+
+    system("pause");
+}
+
+

@@ -55,3 +55,27 @@ void PersonalBudget::addExpense() {
 bool PersonalBudget::isUserLoggedIn() {
     return userManager.isLoggedIn;
 }
+
+void PersonalBudget::showBudgetForCurrentMonth() {
+    if (userManager.isLoggedIn) {
+        budgetManager->showBudgetForCurrentMonth();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
+
+void PersonalBudget::showBudgetFromSelectedPeriod() {
+    if (userManager.isLoggedIn) {
+        budgetManager->showBudgetFromSelectedPeriod();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
+
+void PersonalBudget::showBudgetFromPreviousMonth() {
+    if (userManager.isLoggedIn) {
+        budgetManager->showBudgetFromPreviousMonth();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}

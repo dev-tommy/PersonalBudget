@@ -60,6 +60,13 @@ int Date::getEndDate(int actualDate) {
     return endDate;
 }
 
+int Date::getStartDate(int actualDate) {
+    int startDate = actualDate;
+    startDate /= 100;
+    startDate = startDate * 100 + 1;
+    return startDate;
+}
+
 bool Date::isDateCorrect(string dateToCheck) {
     string dateToBeDivaded = dateToCheck;
     int actualDate = getActualDate();

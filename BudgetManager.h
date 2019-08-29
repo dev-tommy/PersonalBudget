@@ -31,7 +31,10 @@ public:
     BudgetManager(string fileNameWithIncomes,string fileNameWithExpenses,int idOfLoggedInUser);
     void addIncome();
     void addExpense();
-    //void showBudgetFromSelectedPeriod();
+    void showBudgetForCurrentMonth();
+    void showBudgetFromPreviousMonth();
+    void showBudgetFromSelectedPeriod();
+    void showBudgetFromSelectedPeriod(int startDate, int endDate);
     //void setIdOfLoggedInUser();
 
 };
