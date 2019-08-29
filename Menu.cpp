@@ -1,9 +1,11 @@
 #include "Menu.h"
 
-
 void Menu::show() {
     char choice;
     PersonalBudget personalBudget("users.xml", "incomes.xml", "expenses.xml");
+
+    std::cout << std::setprecision(2) << std::fixed;
+
     while (true) {
         if (!personalBudget.isUserLoggedIn()) {
             choice = selectOptionFromMainMenu();
@@ -29,19 +31,19 @@ void Menu::show() {
 
             switch (choice) {
             case '1':
-                //personalBudget.addIncome();
+                personalBudget.addIncome();
                 break;
             case '2':
-                //personalBudget.addExpense();
+                personalBudget.addExpense();
                 break;
             case '3':
-                //personalBudget.showBudgetForCurrentMonth();
+                personalBudget.showBudgetForCurrentMonth();
                 break;
             case '4':
-                //personalBudget.showBudgetFromPreviousMonth();
+                personalBudget.showBudgetFromPreviousMonth();
                 break;
             case '5':
-                //personalBudget.showBudgetFromSelectedPeriod();
+                personalBudget.showBudgetFromSelectedPeriod();
                 break;
             case '6':
                 personalBudget.changePasswordOfLoggedInUser();
@@ -76,16 +78,16 @@ char Menu::selectOptionFromUserMenu() {
 
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
-    cout << "---------------------------" << endl;
-    cout << "[ NIEDOSTEPNE ] 1. Dodaj przychod" << endl;
-    cout << "[ NIEDOSTEPNE ] 2. Dodaj wydatek" << endl;
-    cout << "[ NIEDOSTEPNE ] 3. Bilans z biezacego miesiaca" << endl;
-    cout << "[ NIEDOSTEPNE ] 4. Bilans z poprzedniego miesiaca" << endl;
-    cout << "[ NIEDOSTEPNE ] 5. Bilans z wybranego okresu" << endl;
-    cout << "---------------------------" << endl;
+    cout << "---------------------------------" << endl;
+    cout << "1. Dodaj przychod" << endl;
+    cout << "2. Dodaj wydatek" << endl;
+    cout << "3. Bilans z biezacego miesiaca" << endl;
+    cout << "4. Bilans z poprzedniego miesiaca" << endl;
+    cout << "5. Bilans z wybranego okresu" << endl;
+    cout << "---------------------------------" << endl;
     cout << "6. Zmien haslo" << endl;
     cout << "7. Wyloguj sie" << endl;
-    cout << "---------------------------" << endl;
+    cout << "---------------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::getSign();
 

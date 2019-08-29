@@ -13,9 +13,7 @@ class Menu {
     char selectOptionFromUserMenu();
 
 public:
-
     void show();
-
 };
 
 #endif // MENU_H

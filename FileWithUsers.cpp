@@ -3,9 +3,7 @@
 FileWithUsers::FileWithUsers(string fileNameWithUsers) : FILE_NAME_WITH_USERS(fileNameWithUsers) {
 
 }
-User FileWithUsers::getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
 
-}
 
 void FileWithUsers::addUserToFile(User user) {
     XmlFile xmlFileWithUsers(FILE_NAME_WITH_USERS, USERS_ROOT_NAME);

@@ -4,11 +4,11 @@ PersonalBudget::PersonalBudget(string fileNameWithUsers, string fileNameWithInco
     userManager(fileNameWithUsers),
     FILE_NAME_WITH_INCOMES(fileNameWithIncomes),
     FILE_NAME_WITH_EXPENSES(fileNameWithExpenses) {
-    //budgetManager = NULL;
+    budgetManager = NULL;
 }
 PersonalBudget::~PersonalBudget() {
-    //delete budgetManager;
-    //budgetManager = NULL;
+    delete budgetManager;
+    budgetManager = NULL;
 }
 
 void PersonalBudget::userRegistration() {
@@ -17,7 +17,7 @@ void PersonalBudget::userRegistration() {
 
 void PersonalBudget::userLogin() {
     userManager.userLogin();
-    //budgetManager = new BudgetManager(FILE_NAME_WITH_INCOMES,FILE_NAME_WITH_EXPENSES,userManager.getIdOfLoggedInUser());
+    budgetManager = new BudgetManager(FILE_NAME_WITH_INCOMES,FILE_NAME_WITH_EXPENSES,userManager.getIdOfLoggedInUser());
 }
 
 void PersonalBudget::changePasswordOfLoggedInUser() {
@@ -30,20 +30,52 @@ void PersonalBudget::changePasswordOfLoggedInUser() {
 
 void PersonalBudget::logoutOfUser() {
     userManager.logoutOfUser();
-    //delete budgetManager;
-    //budgetManager = NULL;
+    delete budgetManager;
+    budgetManager = NULL;
 }
 
 
 void PersonalBudget::addIncome() {
+    if (userManager.isLoggedIn) {
+        budgetManager->addIncome();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
 }
 
 void PersonalBudget::addExpense() {
-
-
+    if (userManager.isLoggedIn) {
+        budgetManager->addExpense();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
 }
 
 
 bool PersonalBudget::isUserLoggedIn() {
     return userManager.isLoggedIn;
+}
+
+void PersonalBudget::showBudgetForCurrentMonth() {
+    if (userManager.isLoggedIn) {
+        budgetManager->showBudgetForCurrentMonth();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
+
+void PersonalBudget::showBudgetFromSelectedPeriod() {
+    if (userManager.isLoggedIn) {
+        budgetManager->showBudgetFromSelectedPeriod();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
+
+void PersonalBudget::showBudgetFromPreviousMonth() {
+    if (userManager.isLoggedIn) {
+        budgetManager->showBudgetFromPreviousMonth();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
 }

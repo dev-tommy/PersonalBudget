@@ -1,6 +1,5 @@
 #include "XmlFile.h"
 
-
 XmlFile::XmlFile(string xmlFileName, string rootName) :
     XML_FILE_NAME(xmlFileName),
     ROOT_NAME(rootName) {
@@ -93,8 +92,6 @@ void XmlFile::addDataWithId(string tagNameOfElementWithId, string attributeNameW
     for (itr = DataToWriteToFile.begin(); itr != DataToWriteToFile.end(); ++ itr) {
         xml.AddChildElem(itr->first, itr->second);
     }
-
-
 }
 
 string XmlFile::findLastId(string tagNameOfElementWithId) {
@@ -106,7 +103,6 @@ string XmlFile::findLastId(string tagNameOfElementWithId) {
     while ( xml.FindElem(tagNameOfElementWithId)) {
         lastId = xml.GetAttrib(xml.GetAttribName(0));
     }
-
     return lastId;
 }
 

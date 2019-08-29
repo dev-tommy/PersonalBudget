@@ -18,7 +18,6 @@ using namespace std;
 class FileWithUsers{
     const string FILE_NAME_WITH_USERS;
     const string USERS_ROOT_NAME = "USERS";
-    User getUserData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 public:
     FileWithUsers(string fileNameWithUsers);
     void addUserToFile(User user);
