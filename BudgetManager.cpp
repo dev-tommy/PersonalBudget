@@ -210,6 +210,21 @@ void BudgetManager::showBudgetFromSelectedPeriod() {
     showBudgetFromSelectedPeriod(startDate, endDate);
 }
 
+
+vector<FinancialOperation> BudgetManager::getSortedOperationsFromSelectedPeriod(vector<FinancialOperation> operations, int startDate, int endDate) {
+    vector<FinancialOperation> sortedOperations;
+
+    for (int i = 0; i< operations.size() ; i++) {
+        if ((operations[i].getDate() >= startDate) && (operations[i].getDate() <= endDate)) {
+            sortedOperations.push_back(operations[i]);
+        }
+    }
+
+    AuxiliaryMethods::quickSortVector(sortedOperations, 0, operations.size());
+
+    return sortedOperations;
+}
+
 void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
     const int COLUMN_DATE_SIZE = 12;
     const int COLUMN_ITEM_SIZE = 40;
@@ -224,12 +239,14 @@ void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
     double sumOfIncomes = 0;
     double sumOfExpenses = 0;
 
+    incomesToShow = getSortedOperationsFromSelectedPeriod(incomes, startDate, endDate);
+
+    /*
     for (int i = 0; i< incomes.size() ; i++) {
         if ((incomes[i].getDate() >= startDate) && (incomes[i].getDate() <= endDate)) {
             incomesToShow.push_back(incomes[i]);
         }
-    }
-
+    } */
 
     cout << "PRZYCHODY:" << endl;
 

@@ -109,3 +109,39 @@ string AuxiliaryMethods::findAndReplace(string text, string textToSearchFor, str
 int AuxiliaryMethods::findText(string text, string textToSearchFor) {
 
 }
+
+int AuxiliaryMethods::divideTheTable(vector<FinancialOperation> &operations, int p, int r)
+{
+    FinancialOperation tmpOperation;
+    int x = operations[p].getDate();
+    int i = p, j = r;
+    while (true)
+    {
+        while (operations[j].getDate() > x)
+            j--;
+        while (operations[i].getDate() < x)
+            i++;
+        if (i < j)
+        {
+            tmpOperation = operations[i];
+            operations[i] = operations[j];
+            operations[j] = tmpOperation;
+            i++;
+            j--;
+        }
+        else
+            return j;
+    }
+}
+
+void AuxiliaryMethods::quickSortVector(vector<FinancialOperation> &operations, int p, int r)
+{
+    int q;
+    r--;
+    if (p < r)
+    {
+        q = divideTheTable(operations,p,r);
+        quickSortVector(operations, p, q);
+        quickSortVector(operations, q+1, r);
+    }
+}

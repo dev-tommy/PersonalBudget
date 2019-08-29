@@ -6,6 +6,7 @@
 #include <windows.h>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 #include "FinancialOperation.h"
 #include "FileWithFinancialOperations.h"
@@ -24,6 +25,8 @@ class BudgetManager {
     string giveTheItem();
     double giveTheAmount();
 
+    vector<FinancialOperation> getSortedOperationsFromSelectedPeriod(vector<FinancialOperation> operations, int startDate, int endDate);
+
     FileWithFinancialOperations fileWithIncomes;
     FileWithFinancialOperations fileWithExpenses;
     FinancialOperation enterNewFinancialOperationData();
@@ -36,7 +39,6 @@ public:
     void showBudgetFromPreviousMonth();
     void showBudgetFromSelectedPeriod();
     void showBudgetFromSelectedPeriod(int startDate, int endDate);
-    //void setIdOfLoggedInUser();
 
 };
 

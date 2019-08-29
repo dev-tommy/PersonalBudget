@@ -6,11 +6,17 @@
 #include <algorithm>
 #include <iomanip>
 #include <string>
+#include <vector>
+
+#include "FinancialOperation.h"
 
 using namespace std;
 
 class AuxiliaryMethods {
+    static int divideTheTable(vector<FinancialOperation> &opertions, int p, int r);
+
 public:
+    static void quickSortVector(vector<FinancialOperation> &operations, int p, int r);
     static string convertIntToString(int liczba);
     static string convertDoubleToString(double number);
     static string replaceFirstLetterIntoLargeAndRestIntoSmall(string tekst);
@@ -26,8 +32,6 @@ public:
     static double convertStringToDouble(string number);
 
     static char getSign();
-
-
 };
 
 #endif // AUXILIARYMETHODS_H
