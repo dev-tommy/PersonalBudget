@@ -258,7 +258,6 @@ void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
     lineOfText.resize(1 + COLUMN_DATE_SIZE + 1 + COLUMN_ITEM_SIZE + 1 + COLUMN_AMOUNT_SIZE + 1, '-');
     cout << lineOfText << endl;
 
-    //expensesToShow = expenses;
 
     for (int i = 0; i< expenses.size() ; i++) {
         if ((expenses[i].getDate() >= startDate) && (expenses[i].getDate() <= endDate)) {
