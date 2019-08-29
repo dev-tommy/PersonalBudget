@@ -10,6 +10,7 @@
 #include "FinancialOperation.h"
 #include "FileWithFinancialOperations.h"
 #include "Date.h"
+#include "Table.h"
 
 using namespace std;
 
