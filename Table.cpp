@@ -86,6 +86,8 @@ void Table::showBalance(double balanceValue) {
     title = alignText("Saldo:", "Right", COLUMN_ITEM_SIZE);
     balance = alignText(AuxiliaryMethods::convertDoubleToString(balanceValue), "Right", COLUMN_AMOUNT_SIZE);
 
+    showFullLine();
+
     lineOfText.insert(0, (1 + COLUMN_DATE_SIZE + 1), ' ');
     lineOfText += title + " " + balance;
     cout << lineOfText << endl;

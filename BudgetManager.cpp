@@ -23,9 +23,7 @@ void BudgetManager::addIncome() {
     fileWithIncomes.addOperationToFile(income);
 
     cout << endl << "Przychod dodany pomyslnie." << endl << endl;
-
     system("pause");
-
 }
 
 void BudgetManager::addExpense() {
@@ -41,9 +39,7 @@ void BudgetManager::addExpense() {
     fileWithExpenses.addOperationToFile(expense);
 
     cout << endl << "Wydatek dodany pomyslnie." << endl << endl;
-
     system("pause");
-
 }
 
 int BudgetManager::giveTheDate() {
@@ -110,13 +106,10 @@ double BudgetManager::giveTheAmount() {
 
         correctAmount = true;
     } while (!correctAmount);
-
-
     return AuxiliaryMethods::convertStringToDouble(amount);
 }
 
 FinancialOperation BudgetManager::enterNewFinancialOperationData() {
-
     FinancialOperation operation;
     string item, amount;
 
@@ -137,9 +130,7 @@ void BudgetManager::showBudgetForCurrentMonth() {
     system("cls");
     cout << ">>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
     cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << ":" << endl << endl;
-
     showBudgetFromSelectedPeriod(startDate, endDate);
-    system("pause");
 }
 
 void BudgetManager::showBudgetFromPreviousMonth() {
@@ -165,7 +156,6 @@ void BudgetManager::showBudgetFromPreviousMonth() {
     cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << ":" << endl << endl;
 
     showBudgetFromSelectedPeriod(startDate, endDate);
-    system("pause");
 }
 
 void BudgetManager::showBudgetFromSelectedPeriod() {
@@ -220,8 +210,7 @@ vector<FinancialOperation> BudgetManager::getSortedOperationsFromSelectedPeriod(
         }
     }
 
-    AuxiliaryMethods::quickSortVector(sortedOperations, 0, operations.size());
-
+    AuxiliaryMethods::quickSortVector(sortedOperations, 0, sortedOperations.size()-1);
     return sortedOperations;
 }
 
@@ -240,35 +229,20 @@ void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
     double sumOfExpenses = 0;
 
     incomesToShow = getSortedOperationsFromSelectedPeriod(incomes, startDate, endDate);
-
-    /*
-    for (int i = 0; i< incomes.size() ; i++) {
-        if ((incomes[i].getDate() >= startDate) && (incomes[i].getDate() <= endDate)) {
-            incomesToShow.push_back(incomes[i]);
-        }
-    } */
-
     cout << "PRZYCHODY:" << endl;
-
     Table incomesTable(COLUMN_DATE_SIZE, COLUMN_ITEM_SIZE, COLUMN_AMOUNT_SIZE, incomesToShow);
     incomesTable.showTable();
 
-    for (int i = 0; i< expenses.size() ; i++) {
-        if ((expenses[i].getDate() >= startDate) && (expenses[i].getDate() <= endDate)) {
-            expensesToShow.push_back(expenses[i]);
-        }
-    }
-
+    expensesToShow = getSortedOperationsFromSelectedPeriod(expenses, startDate, endDate);
     cout << "WYDATKI:" << endl;
-
     Table expensesTable(COLUMN_DATE_SIZE, COLUMN_ITEM_SIZE, COLUMN_AMOUNT_SIZE, expensesToShow);
     expensesTable.showTable();
 
     incomesTable.showSumOfAmounts("Suma przychodow:");
     expensesTable.showSumOfAmounts("Suma wydatkow:");
-
     incomesTable.showBalance(incomesTable.getSumOfAmounts() - expensesTable.getSumOfAmounts());
 
+    system("pause");
 }
 
 

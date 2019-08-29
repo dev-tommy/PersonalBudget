@@ -39,7 +39,6 @@ public:
     void showBudgetFromPreviousMonth();
     void showBudgetFromSelectedPeriod();
     void showBudgetFromSelectedPeriod(int startDate, int endDate);
-
 };
 
 #endif // BUDGETMANAGER_H

@@ -25,8 +25,6 @@ public:
     void addOperationToFile(FinancialOperation operation);
     vector<FinancialOperation> loadFinancialOperationsFromFile(int idOfLoggedInUser);
     int getLastIdOfOperation();
-    //void saveAllUsersToFile(vector<User> users);
-    //void saveEditedUser(User user);
 };
 
 
