@@ -75,11 +75,23 @@ string AuxiliaryMethods::getLineOfText() {
 }
 
 string AuxiliaryMethods::getDateAsString(int dateAsInt) {
-    string dateAsString = "";
-    dateAsString = convertIntToString(dateAsInt);
-    dateAsString.insert(6,"-");
-    dateAsString.insert(4,"-");
+    string dateAsString = "ErrSize";
+    if ((dateAsInt > 10000000) && (dateAsInt < 99991231)) {
+        dateAsString = convertIntToString(dateAsInt);
+        dateAsString.insert(6,"-");
+        dateAsString.insert(4,"-");
+    }
     return dateAsString;
+}
+
+int AuxiliaryMethods::convertDateToInt(string date) {
+    int convertedDate = 0;
+    if (date.size() == 10) {
+        date.erase(7,1);
+        date.erase(4,1);
+        convertedDate = AuxiliaryMethods::convertStringToInt(date);
+    }
+    return convertedDate;
 }
 
 string AuxiliaryMethods::findAndReplace(string text, string textToSearchFor, string replaceWith) {
@@ -87,8 +99,8 @@ string AuxiliaryMethods::findAndReplace(string text, string textToSearchFor, str
     do {
         positionFound = text.find( textToSearchFor );
         if( positionFound != string::npos ) {
-                text.erase(positionFound, textToSearchFor.length());
-                text.insert(positionFound, replaceWith);
+            text.erase(positionFound, textToSearchFor.length());
+            text.insert(positionFound, replaceWith);
         }
     } while( positionFound != string::npos );
     return text;

@@ -15,13 +15,19 @@ public:
     static string convertDoubleToString(double number);
     static string replaceFirstLetterIntoLargeAndRestIntoSmall(string tekst);
     static string getNumber(string tekst, int pozycjaZnaku);
-    static int convertStringToInt(string liczba);
-    static double convertStringToDouble(string number);
-    static char getSign();
     static string getLineOfText();
     static string getDateAsString(int dateAsInt);
     static string findAndReplace(string text, string textToSearchFor, string replaceWith);
+
+    static int convertStringToInt(string liczba);
+    static int convertDateToInt(string date);
     static int findText(string text, string textToSearchFor);
+
+    static double convertStringToDouble(string number);
+
+    static char getSign();
+
+
 };
 
 #endif // AUXILIARYMETHODS_H

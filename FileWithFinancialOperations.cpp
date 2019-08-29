@@ -49,7 +49,7 @@ vector<FinancialOperation> FileWithFinancialOperations::loadFinancialOperationsF
         xmlFileWithFinancialOperations.xml.ResetChildPos();
 
         xmlFileWithFinancialOperations.xml.FindChildElem("date");
-        operationToRead.setDate( AuxiliaryMethods::convertStringToInt( xmlFileWithFinancialOperations.xml.GetChildData() ) );
+        operationToRead.setDate( AuxiliaryMethods::convertDateToInt( xmlFileWithFinancialOperations.xml.GetChildData() ) );
         xmlFileWithFinancialOperations.xml.ResetChildPos();
         operations.push_back(operationToRead);
     }

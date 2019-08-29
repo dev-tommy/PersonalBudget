@@ -136,7 +136,7 @@ void BudgetManager::showBudgetForCurrentMonth() {
 
     system("cls");
     cout << ">>> BILANS Z BIEZACEGO MIESIACA <<<" << endl;
-    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << ":" << endl << endl;
 
     showBudgetFromSelectedPeriod(startDate, endDate);
     system("pause");
@@ -162,7 +162,7 @@ void BudgetManager::showBudgetFromPreviousMonth() {
 
     system("cls");
     cout << ">>> BILANS Z POPRZEDNIEGO MIESIACA <<<" << endl;
-    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << ":" << endl << endl;
 
     showBudgetFromSelectedPeriod(startDate, endDate);
     system("pause");
@@ -206,17 +206,99 @@ void BudgetManager::showBudgetFromSelectedPeriod() {
 
     system("cls");
     cout << ">>> BILANS Z WYBRANEGO OKRESU <<<" << endl;
-    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << endl;
+    cout << "Od " << AuxiliaryMethods::getDateAsString(startDate) << " do " << AuxiliaryMethods::getDateAsString(endDate) << ":" << endl << endl;
     showBudgetFromSelectedPeriod(startDate, endDate);
 }
 
 void BudgetManager::showBudgetFromSelectedPeriod(int startDate, int endDate) {
- /*   for (int i=0; i<incomes.size() ; i++) {
-        cout << "| " << incomes[i].get << endl;
+    const int COLUMN_DATE_SIZE = 12;
+    const int COLUMN_ITEM_SIZE = 40;
+    const int COLUMN_AMOUNT_SIZE = 20;
 
+    vector<FinancialOperation> incomesToShow;
+    vector<FinancialOperation> expensesToShow;
 
+    string columnDate, columnItem, columnAmount;
+    string lineOfText;
+
+    double sumOfIncomes = 0;
+    double sumOfExpenses = 0;
+
+    for (int i = 0; i< incomes.size() ; i++) {
+        if ((incomes[i].getDate() >= startDate) && (incomes[i].getDate() <= endDate)) {
+            incomesToShow.push_back(incomes[i]);
+        }
     }
-*/
+
+
+    cout << "PRZYCHODY:" << endl;
+
+    lineOfText = "";
+    lineOfText.resize(1 + COLUMN_DATE_SIZE + 1 + COLUMN_ITEM_SIZE + 1 + COLUMN_AMOUNT_SIZE + 1, '-');
+    cout << lineOfText << endl;
+
+    for (int i=0; i<incomesToShow.size() ; i++) {
+        columnDate = AuxiliaryMethods::getDateAsString(incomesToShow[i].getDate());
+        columnDate = " " + columnDate;
+        columnDate.resize(COLUMN_DATE_SIZE, ' ');
+
+        columnItem = " " + incomesToShow[i].getItem();
+        columnItem.resize(COLUMN_ITEM_SIZE, ' ');
+
+        sumOfIncomes += incomesToShow[i].getAmount();
+
+        columnAmount = AuxiliaryMethods::convertDoubleToString(incomesToShow[i].getAmount()) + " ";
+        columnAmount.insert(0 , COLUMN_AMOUNT_SIZE - columnAmount.length(), ' ');
+        columnAmount.resize(COLUMN_AMOUNT_SIZE, ' ');
+
+        cout << "|" << columnDate << "|" << columnItem << "|" << columnAmount << "|" << endl;
+    }
+
+    lineOfText = "";
+    lineOfText.resize(1 + COLUMN_DATE_SIZE + 1 + COLUMN_ITEM_SIZE + 1 + COLUMN_AMOUNT_SIZE + 1, '-');
+    cout << lineOfText << endl;
+
+    //expensesToShow = expenses;
+
+    for (int i = 0; i< expenses.size() ; i++) {
+        if ((expenses[i].getDate() >= startDate) && (expenses[i].getDate() <= endDate)) {
+            expensesToShow.push_back(expenses[i]);
+        }
+    }
+
+    cout << "WYDATKI:" << endl;
+
+    lineOfText = "";
+    lineOfText.resize(1 + COLUMN_DATE_SIZE + 1 + COLUMN_ITEM_SIZE + 1 + COLUMN_AMOUNT_SIZE + 1, '-');
+    cout << lineOfText << endl;
+
+    for (int i=0; i<expensesToShow.size() ; i++) {
+        columnDate = AuxiliaryMethods::getDateAsString(expensesToShow[i].getDate());
+        columnDate = " " + columnDate;
+        columnDate.resize(COLUMN_DATE_SIZE, ' ');
+
+        columnItem = " " + expensesToShow[i].getItem();
+        columnItem.resize(COLUMN_ITEM_SIZE, ' ');
+
+        sumOfExpenses = expensesToShow[i].getAmount();
+
+        columnAmount = AuxiliaryMethods::convertDoubleToString(expensesToShow[i].getAmount()) + " ";
+        columnAmount.insert(0 , COLUMN_AMOUNT_SIZE - columnAmount.length(), ' ');
+        columnAmount.resize(COLUMN_AMOUNT_SIZE, ' ');
+
+        cout << "|" << columnDate << "|" << columnItem << "|" << columnAmount << "|" << endl;
+    }
+
+
+    lineOfText = "";
+    lineOfText.resize(1 + COLUMN_DATE_SIZE + 1 + COLUMN_ITEM_SIZE + 1 + COLUMN_AMOUNT_SIZE + 1, '-');
+    cout << lineOfText << endl;
+
+    cout << "                                       " << "Suma przychodow:           " << sumOfIncomes << endl;
+    cout << "                                         " << "Suma wydatkow:           " << sumOfExpenses << endl;
+
+    cout << endl << "                                               " << "Bilans:           " << (sumOfIncomes - sumOfExpenses) << endl;
+
     system("pause");
 }
 
